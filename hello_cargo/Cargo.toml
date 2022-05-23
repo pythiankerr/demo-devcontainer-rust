@@ -1,0 +1,21 @@
+[package]
+name = "hello_cargo"
+version = "0.1.0"
+edition = "2021"
+
+# Make a smaller resulting binary (eg. 9.5MB -> 2.3MB)
+[profile.release]
+opt-level = 'z'     # Optimize for size.
+lto = true          # Enable Link Time Optimization
+codegen-units = 1   # Reduce number of codegen units to increase optimizations.
+strip = true        # Strip symbols from binary*
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+reqwest = { version = "0.11", features = ["json"] }
+tokio = { version = "1", features = ["full"] }
+semver = "1.0"
+regex = "1"
